@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "0e903f82-5cf4-4dca-91b8-04080ae2a295",
+		"name": "EXP_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38451946"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.collectionVariables.set(\"USER_ID\", pm.response.json()[\"user_id\"]);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{EMAIL}}\",\r\n  \"password\": \"{{PASSWORD}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/login",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json()['id']\r",
+							"pm.collectionVariables.set(\"TICKET_ID\", response);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"testAD12345\",\r\n  \"description\": \"Lorem ipsum\",\r\n  \"user_id\": {{USER_ID}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/tickets/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Tickets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ticket ID previously created should exist\", () => {\r",
+							"    const response = pm.response.json()\r",
+							"    const hasBEqual = response.some(obj => obj.id === parseInt(pm.collectionVariables.get(\"TICKET_ID\")));\r",
+							"    pm.expect(hasBEqual).to.be.true\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/tickets/user/{{USER_ID}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"user",
+						"{{USER_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ticket updated\", () => {\r",
+							"    pm.expect(pm.response.json()[\"message\"]).to.be.eql(\"Ticket updated\")\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"closed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/tickets/{{TICKET_ID}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"tickets",
+						"{{TICKET_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Cases",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const Ajv = require('ajv')\r",
+							"const ajv = new Ajv()\r",
+							"const schema = {\r",
+							"  \"type\": \"array\",\r",
+							"  \"properties\": {\r",
+							"    \"case_name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"status\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"item_id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"user_id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"case_name\",\r",
+							"    \"status\",\r",
+							"    \"item_id\",\r",
+							"    \"id\",\r",
+							"    \"user_id\"\r",
+							"  ]\r",
+							"}\r",
+							"\r",
+							"const validate = ajv.compile(schema)\r",
+							"\r",
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validating JSON schema\", () => {\r",
+							"    const valid = validate(pm.response.json())\r",
+							"    pm.expect(valid).to.be.true;\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{HOST}}/api/cases",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"cases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login fail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 422\", () => {\r",
+							"    pm.response.to.have.status(422);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": {{EMAIL}},\r\n  \"password\": {{PASSWORD}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/login",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "<HOST>",
+			"type": "string"
+		},
+		{
+			"key": "USER_ID",
+			"value": "737",
+			"type": "string"
+		},
+		{
+			"key": "TICKET_ID",
+			"value": "738",
+			"type": "string"
+		},
+		{
+			"key": "EMAIL",
+			"value": "<EMAIL>",
+			"type": "string"
+		},
+		{
+			"key": "PASSWORD",
+			"value": "<PASSWORD>",
+			"type": "string"
+		}
+	]
+}
