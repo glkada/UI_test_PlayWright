@@ -5,10 +5,10 @@ In this project, I selected an existing website to demonstrate my testing expert
 There is an RTM attached with the name _RTM_.xlsx where I have built the RTM that covers features like App access, Ticket creation & Case creation. 
 
 # UI tests
-Framework selection: I selected **PlayWright** since our focus was only cross desktop-browser testing. As PlayWright uses chromium dev tools like protocol is alot more stable.
-                      Selenium uses APIs to communicate with the driver which introduces all the API related stablity issues. So it was better avoided.
-                      Cypress was an alternative as well, however, parallelization would be a task. 
-                      WDIO would be my go to framework if mobile based browser testing was needed. 
+Framework selection: I selected **PlayWright** since our focus was only cross desktop-browser testing. As PlayWright uses chromium dev tools like protocol is alot more stable. <br />
+                      Selenium uses APIs to communicate with the driver which introduces all the API related stablity issues. So it was better avoided. <br />
+                      Cypress was an alternative as well, however, parallelization would be a task. <br />
+                      WDIO would be my go to framework if mobile based browser testing was needed. <br />
 Tests:
 BeforeAll Hook: 
 I first start with registering a user on the platform. Leveraged faker library here to ensure that the creation of email does not follow any specific preset pattern and is
@@ -20,22 +20,22 @@ Test Cases
 
 
 # API testing
-I have added a file _API_TEST_.postman_collection.json. 
-The API test includes:
-RBAC:
-  POST /login - Verify if we're able to login with valid credentials. Validation: Check for status 200
-  POST /login - Verify if login fails if we don't pass credentials. Validation: Check for sstatus 422
-  POST /login - Verify if login fails if we pass invalid credentials. Validation: Check for sstatus 403
-Ticket creation:
-  POST /ticket - Create a new ticket for the User ID obtained after a successful login. Validation: A ticket ID should be returned.
-  GET /tickets - Get a list of tickets for the User ID obtained after a successful login. Validation: The ticket ID returned above should be present
-  PUT /ticket - Update a certain parameter for the ticket ID returned above. Validation: Check for status 200 and expect response Ticket updated. 
-Get Cases:
-  GET /cases - Just logging all the cases created by the User ID obtained above. Validation: Added schema validation. 
+I have added a file _API_TEST_.postman_collection.json. <br />
+The API test includes: <br />
+RBAC: <br />
+  POST /login - Verify if we're able to login with valid credentials. Validation: Check for status 200 <br />
+  POST /login - Verify if login fails if we don't pass credentials. Validation: Check for sstatus 422 <br />
+  POST /login - Verify if login fails if we pass invalid credentials. Validation: Check for sstatus 403 <br />
+Ticket creation: <br />
+  POST /ticket - Create a new ticket for the User ID obtained after a successful login. Validation: A ticket ID should be returned. <br />
+  GET /tickets - Get a list of tickets for the User ID obtained after a successful login. Validation: The ticket ID returned above should be present <br />
+  PUT /ticket - Update a certain parameter for the ticket ID returned above. Validation: Check for status 200 and expect response Ticket updated. <br />
+Get Cases: <br />
+  GET /cases - Just logging all the cases created by the User ID obtained above. Validation: Added schema validation. <br />
 
-# Future scope
-This script can easily be exececuted on multiple browsers in parallel. 
-Some minor changes are needed to generate email address since we would like to generate email address only once and use it across
+# Future scope 
+This script can easily be exececuted on multiple browsers in parallel. <br />
+Some minor changes are needed to generate email address since we would like to generate email address only once and use it across <br />
 
 # Project Setup Guide
 
