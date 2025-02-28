@@ -1,5 +1,7 @@
 # Comprehensive Testing Demonstration Project
-In this project, I selected an existing website to demonstrate my testing expertise. I created a Requirements Traceability Matrix (RTM), along with UI and API tests, to validate key scenarios.
+In this project, I selected an existing website to demonstrate my testing expertise. I created a Requirements Traceability Matrix (RTM), along with UI and API tests, to validate key scenarios. <br />
+UI tests: https://www.loom.com/share/37d6bf077a034e56abdbafa4cad706a7?sid=9e001a3f-2175-489b-8287-760d5b103d5e <br />
+API tests: https://www.loom.com/share/2435b19c4a514335a89a501723fcf13c?sid=f4bbff9c-0f9a-427a-be3a-76260669c648 
 
 ## RTM (Requirements traceblity matrix)
 There is an RTM attached with the name _RTM_.xlsx where I have built the RTM that covers features like App access, Ticket creation & Case creation. 
@@ -20,7 +22,7 @@ Test Cases
 
 
 ## API testing
-I have added a file _API_TEST_.postman_collection.json. <br />
+I have added a file _BE validations_.postman_collection.json. <br />
 The API test includes: <br />
 RBAC: <br />
   &emsp;POST /login - Verify if we're able to login with valid credentials. Validation: Check for status 200 <br />
