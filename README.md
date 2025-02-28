@@ -1,10 +1,10 @@
 ## Comprehensive Testing Demonstration Project
 In this project, I selected an existing website to demonstrate my testing expertise. I created a Requirements Traceability Matrix (RTM), along with UI and API tests, to validate key scenarios.
 
-# RTM (Requirements traceblity matrix)
+## RTM (Requirements traceblity matrix)
 There is an RTM attached with the name _RTM_.xlsx where I have built the RTM that covers features like App access, Ticket creation & Case creation. 
 
-# UI tests
+## UI tests
 Framework selection: I selected **PlayWright** since our focus was only cross desktop-browser testing. As PlayWright uses chromium dev tools like protocol is alot more stable. <br />
                       Selenium uses APIs to communicate with the driver which introduces all the API related stablity issues. So it was better avoided. <br />
                       Cypress was an alternative as well, however, parallelization would be a task. <br />
@@ -19,7 +19,7 @@ Test Cases
 2. Log into the platform creates a case and asserts the case creation and log out.
 
 
-# API testing
+## API testing
 I have added a file _API_TEST_.postman_collection.json. <br />
 The API test includes: <br />
 RBAC: <br />
@@ -33,17 +33,17 @@ Ticket creation: <br />
 Get Cases: <br />
   &emsp;GET /cases - Just logging all the cases created by the User ID obtained above. Validation: Added schema validation. <br />
 
-# Future scope 
+## Future scope 
 This script can easily be exececuted on multiple browsers in parallel. <br />
 Some minor changes are needed to generate email address since we would like to generate email address only once and use it across <br />
 
-# Project Setup Guide
+## Project Setup Guide
 
 This guide will walk you through installing the necessary dependencies, setting up Playwright browsers, and running tests using `pytest`.
 
 ---
 
-# Prerequisites
+## Prerequisites
 
 Make sure you have the following installed:
 
@@ -58,7 +58,7 @@ Make sure you have the following installed:
 
 ---
 
-# 1. Install Dependencies
+### 1. Install Dependencies
 
 Run the following command to install all the dependencies:
 
@@ -68,7 +68,7 @@ pip install -r requirements.txt
 
 ---
 
-# 2. Install Playwright Browsers
+### 2. Install Playwright Browsers
 
 After installing the dependencies, you need to install the Playwright browsers. Use the following command:
 
@@ -86,7 +86,7 @@ playwright install chromium firefox webkit
 
 ---
 
-# 3. Running Tests with `pytest`
+### 3. Running Tests with `pytest`
 
 To run the tests using `pytest`, navigate to your project directory and execute:
 
@@ -98,7 +98,7 @@ pytest --headed --browser=chromium --browser=webkit
 
 ---
 
-# Troubleshooting
+### Troubleshooting
 
 - **`pip` command not found**: Ensure Python is added to your system's PATH.
 - **Browser installation fails**: Check your internet connection and retry `playwright install`.
@@ -106,9 +106,9 @@ pytest --headed --browser=chromium --browser=webkit
 
 ---
 
-# Conclusion
+### Conclusion
 
 This guide covers the basic setup to install dependencies, install Playwright browsers, and run tests using `pytest`. For more advanced configuration, refer to the [Playwright documentation](https://playwright.dev/) or the [pytest documentation](https://docs.pytest.org/).
 
-# Feedback/Suggestion
+## Feedback/Suggestion
 Thanks, for coming up with a feedback/suggestion. You can reach out to me on adityagholkar@gmail.com
