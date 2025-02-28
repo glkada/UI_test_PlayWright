@@ -23,15 +23,15 @@ Test Cases
 I have added a file _API_TEST_.postman_collection.json. <br />
 The API test includes: <br />
 RBAC: <br />
-  POST /login - Verify if we're able to login with valid credentials. Validation: Check for status 200 <br />
-  POST /login - Verify if login fails if we don't pass credentials. Validation: Check for sstatus 422 <br />
-  POST /login - Verify if login fails if we pass invalid credentials. Validation: Check for sstatus 403 <br />
+  &emsp;POST /login - Verify if we're able to login with valid credentials. Validation: Check for status 200 <br />
+  &emsp;POST /login - Verify if login fails if we don't pass credentials. Validation: Check for sstatus 422 <br />
+  &emsp;POST /login - Verify if login fails if we pass invalid credentials. Validation: Check for sstatus 403 <br />
 Ticket creation: <br />
-  POST /ticket - Create a new ticket for the User ID obtained after a successful login. Validation: A ticket ID should be returned. <br />
-  GET /tickets - Get a list of tickets for the User ID obtained after a successful login. Validation: The ticket ID returned above should be present <br />
-  PUT /ticket - Update a certain parameter for the ticket ID returned above. Validation: Check for status 200 and expect response Ticket updated. <br />
+  &emsp;POST /ticket - Create a new ticket for the User ID obtained after a successful login. Validation: A ticket ID should be returned. <br />
+  &emsp;GET /tickets - Get a list of tickets for the User ID obtained after a successful login. Validation: The ticket ID returned above should be present <br />
+  &emsp;PUT /ticket - Update a certain parameter for the ticket ID returned above. Validation: Check for status 200 and expect response Ticket updated. <br />
 Get Cases: <br />
-  GET /cases - Just logging all the cases created by the User ID obtained above. Validation: Added schema validation. <br />
+  &emsp;GET /cases - Just logging all the cases created by the User ID obtained above. Validation: Added schema validation. <br />
 
 # Future scope 
 This script can easily be exececuted on multiple browsers in parallel. <br />
