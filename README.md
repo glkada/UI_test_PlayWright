@@ -1,4 +1,4 @@
-## Comprehensive Testing Demonstration Project
+# Comprehensive Testing Demonstration Project
 In this project, I selected an existing website to demonstrate my testing expertise. I created a Requirements Traceability Matrix (RTM), along with UI and API tests, to validate key scenarios.
 
 ## RTM (Requirements traceblity matrix)
